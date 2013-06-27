@@ -7,11 +7,15 @@ Gem::Specification.new do |spec|
   spec.name          = "rendo"
   spec.version       = Rendo::VERSION
   spec.authors       = ["Jon Willesen"]
-  spec.email         = ["jonw@instructure.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
-  spec.homepage      = ""
+  spec.email         = ["git@wizardwell.net"]
+  spec.summary       = %q{Learn regexes by playing Regex Zendo.}
+  spec.homepage      = "https://github.com/jwillesen/rendo"
   spec.license       = "MIT"
+  spec.description   = <<-DESC
+A gem to play a game of regex zendo. Supply the regexes and test strings against
+them to see how the strings match. Mostly intendend for presentations or
+interactive learning sessions.
+DESC
 
   spec.files         = `git ls-files`.split($/)
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }

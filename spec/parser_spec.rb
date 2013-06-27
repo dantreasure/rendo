@@ -7,7 +7,7 @@ describe Rendo::Parser do
 
   it "defaults to the test command" do
     @parser.parse("foo").must_equal(
-      command: :test,
+      command: :match,
       arguments: ["foo"],
     )
   end

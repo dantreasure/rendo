@@ -12,7 +12,7 @@ module Rendo
         }
       else
         {
-          command: :test,
+          command: :match,
           arguments: [text],
         }
       end
