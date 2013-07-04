@@ -27,4 +27,5 @@ DESC
   spec.add_development_dependency "guard"
   spec.add_development_dependency "guard-minitest"
   spec.add_development_dependency "terminal-notifier-guard"
+  spec.add_development_dependency "mocha"
 end

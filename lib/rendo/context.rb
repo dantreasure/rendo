@@ -20,9 +20,6 @@ module Rendo
       @current_index = [@current_index - 1, 0].max
     end
 
-    def match(str)
-      current_regex.match(str)
-    end
 
   end
 end

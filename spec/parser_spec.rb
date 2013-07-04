@@ -7,21 +7,21 @@ describe Rendo::Parser do
 
   it "defaults to the test command" do
     @parser.parse("foo").must_equal(
-      command: :match,
+      command: "match",
       arguments: ["foo"],
     )
   end
 
   it "recognizes bang as a special command" do
     @parser.parse("!foo").must_equal(
-      command: :foo,
+      command: "foo",
       arguments: [],
     )
   end
 
   it "parses shell-style arguments for bang commands" do
     @parser.parse(%Q{!foo one two "three four"}).must_equal(
-      command: :foo,
+      command: "foo",
       arguments: ["one", "two", "three four"],
     )
   end

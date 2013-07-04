@@ -7,12 +7,12 @@ module Rendo
       when /^!/
         tokens = Shellwords.split(text)
         {
-          command: tokens.first.gsub(/^!/, '').to_sym,
+          command: tokens.first.gsub(/^!/, ''),
           arguments: tokens[1..-1],
         }
       else
         {
-          command: :match,
+          command: "match",
           arguments: [text],
         }
       end
