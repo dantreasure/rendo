@@ -23,14 +23,7 @@ module Rendo
       self.parser    = options[:parser]    || Rendo::Parser.new
       self.evaluator = options[:evaluator] || Rendo::Evaluator.new(context: context)
       self.output    = options[:output]    || $stdout
-      @prompt = [
-        "\n",
-        "regex is: ",
-        "~regex~",
-        "\n",
-        "rendo> ",
-      ]
-      @regex_index = @prompt.find_index("~regex~")
+      @prompt_template = "\nregex %{index}: %{regex}\nrendo> "
     end
 
     def rep
@@ -45,19 +38,31 @@ module Rendo
     end
 
     def repl
-      while rep
+      while !context.should_quit && rep
       end
     end
 
     private
 
     def set_prompt
-      @prompt[@regex_index] = if context.current_regex
+      regex_str = if context.current_regex
         context.current_regex.source
       else
-        "no regex set"
+        ""
       end
-      prompter.prompt = @prompt.join
+
+      index_str ||= if regex_str.empty?
+        "not set"
+      elsif context.regex_overridden?
+        "(custom)"
+      else
+        "##{context.current_index}"
+      end
+
+      prompter.prompt = @prompt_template % {
+        index: index_str,
+        regex: regex_str,
+      }
     end
   end
 end

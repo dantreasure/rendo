@@ -1,0 +1,8 @@
+a
+ab
+foo|bar
+[abcd]
+[^abcd]
+abc?
+abc+
+ab*c

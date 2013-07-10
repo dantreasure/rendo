@@ -26,6 +26,12 @@ describe Rendo::Evaluator do
     result.must_equal "Unrecognized command: unknown"
   end
 
+  it "has a quit command" do
+    result = subject.evaluate(command: "quit")
+    result.must_be_nil
+    @context.should_quit.must_equal true
+  end
+
   it "has a set command" do
     result = subject.evaluate(command: 'set', args: ["abc"])
     result.must_be_nil

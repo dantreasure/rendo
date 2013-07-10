@@ -6,6 +6,5 @@ task :test do
 end
 
 task :rendo do
-  $LOAD_PATH.unshift('lib')
-  sh 'bin/rendo'
+  sh 'ruby -Ilib bin/rendo'
 end
