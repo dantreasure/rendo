@@ -55,11 +55,13 @@ module Rendo
 
     def initialize(opts = {})
       @context = opts[:context] || Rendo::Context.new
-      quote(['angle'])
-      color(['cyan'])
+      quote(['normal'])
+      color(['off'])
       background(['off'])
       effect(['off'])
     end
+
+    # evaluation methods
 
     def evaluate(command)
       method_name = command[:command]
@@ -151,6 +153,7 @@ module Rendo
     end
 
     def color(args)
+      return "Argument required" unless args.first
       key = args.first.to_sym
       color = Colors[key]
       return "Unrecognized color: #{key}" unless color
@@ -159,6 +162,7 @@ module Rendo
     end
 
     def background(args)
+      return "Argument required" unless args.first
       key = args.first.to_sym
       background = Backgrounds[key]
       return "Unrecognized background: #{key}" unless background
@@ -167,6 +171,7 @@ module Rendo
     end
 
     def effect(args)
+      return "Argument required" unless args.first
       key = args.first.to_sym
       effect = Effects[key]
       return "Unrecognized effect: #{key}" unless effect

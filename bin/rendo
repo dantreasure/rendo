@@ -4,4 +4,8 @@ require 'rendo'
 
 repl = Rendo::Repl.new
 
+# setup some prettier defaults
+repl.evaluator.quote(['angle'])
+repl.evaluator.color(['cyan'])
+
 repl.repl
