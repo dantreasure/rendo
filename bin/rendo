@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+require 'rendo'
+
+repl = Rendo::Repl.new
+
+repl.repl

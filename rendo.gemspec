@@ -23,9 +23,7 @@ DESC
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency "bundler", "~> 1.3"
-  spec.add_development_dependency "rake"
-  spec.add_development_dependency "guard"
-  spec.add_development_dependency "guard-minitest"
-  spec.add_development_dependency "terminal-notifier-guard"
-  spec.add_development_dependency "mocha"
+  spec.add_development_dependency "rake", "~> 10.1"
+  spec.add_development_dependency "minitest", "~> 5.0"
+  spec.add_development_dependency "mocha", "~> 0.14"
 end

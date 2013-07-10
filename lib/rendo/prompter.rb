@@ -1,14 +1,11 @@
 module Rendo
   class Prompter
 
-    # Public: The first part of the prompt that can be set independently.
-    attr_accessor :prefix
+    # Public: The string to prompt with
+    attr_accessor :prompt
 
-    # Public: The last part of the prompt that can be set independently.
-    attr_accessor :suffix
-
-    def prompt
-      "#{prefix} #{suffix}"
+    def get_input
+      Readline.readline(prompt, true)
     end
 
   end

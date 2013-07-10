@@ -3,45 +3,53 @@ require 'spec_helper'
 describe Rendo::Repl do
   before do
     @command = { command: "blah", arguments: []}
-    @context = mock
-    @prompter = stub(prompt: "prompt>")
+    #@prompter = stub(:prefix= => nil, :suffix= => nil, :prefix => n)
+    @prompter = stub(:prompt => "prompt", :prompt= => nil)
     @parser = stub(parse: @command)
     @evaluator = mock
-    @printer = mock
+    @output = StringIO.new
     @io = mock
   end
 
   subject do
     Rendo::Repl.new(
-      context:   @context,
       prompter:  @prompter,
       parser:    @parser,
       evaluator: @evaluator,
-      printer:   @printer,
+      output:    @output,
     )
   end
 
   describe ".rep" do
     it "performs a rep" do
-      Readline.expects(:readline).with("prompt>", true).returns("input")
-      @evaluator.expects(:evaluate).with(@command).returns(:result)
-      @printer.expects(:print).with(:result)
+      subject.context.current_regex = /foo/
+      @prompter.expects(:prompt=).with("\nregex is: foo\nrendo> ")
+      @prompter.expects(:get_input).returns("input")
+      @evaluator.expects(:evaluate).with(@command).returns("result")
       result = subject.rep
       result.must_equal true
+      @output.string.must_equal("result\n")
     end
 
     it "returns false on eof" do
-      Readline.expects(:readline).returns(nil)
+      @prompter.expects(:get_input)
       result = subject.rep
       result.must_equal false
     end
+
+    it "outputs nothing when evaulate returns nil" do
+      @prompter.expects(:get_input).returns("input")
+      @evaluator.expects(:evaluate).returns(nil)
+      subject.rep
+      @output.string.must_be :empty?
+    end
+
   end
 
   describe ".repl" do
     it "repeatedly performs rep" do
-      Readline.expects(:readline).twice.returns("input", nil)
+      @prompter.expects(:get_input).twice.returns("input", nil)
       @evaluator.stubs(:evaluate)
-      @printer.stubs(:print)
       subject.repl
     end
   end

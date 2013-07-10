@@ -8,12 +8,12 @@ module Rendo
         tokens = Shellwords.split(text)
         {
           command: tokens.first.gsub(/^!/, ''),
-          arguments: tokens[1..-1],
+          args: tokens[1..-1],
         }
       else
         {
           command: "match",
-          arguments: [text],
+          args: [text],
         }
       end
     end
