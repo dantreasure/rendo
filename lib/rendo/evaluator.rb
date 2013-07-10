@@ -14,7 +14,7 @@ module Rendo
       black:   "\033[30m",
       red:     "\033[31m",
       green:   "\033[32m",
-      brown:   "\033[33m",
+      yellow:  "\033[33m",
       blue:    "\033[34m",
       magenta: "\033[35m",
       cyan:    "\033[36m",
@@ -26,7 +26,7 @@ module Rendo
       black:   "\033[40m",
       red:     "\033[41m",
       green:   "\033[42m",
-      brown:   "\033[43m",
+      yellow:  "\033[43m",
       blue:    "\033[44m",
       magenta: "\033[45m",
       cyan:    "\033[46m",
@@ -55,8 +55,8 @@ module Rendo
 
     def initialize(opts = {})
       @context = opts[:context] || Rendo::Context.new
-      quote(['normal'])
-      color(['off'])
+      quote(['angle'])
+      color(['cyan'])
       background(['off'])
       effect(['off'])
     end
